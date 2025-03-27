@@ -39,7 +39,10 @@ namespace ConsoleAppForWeapon
                     Console.WriteLine("Single Mode");
                     _bullets--;
                 }
-
+            }
+            else
+            {
+                Console.WriteLine("Güllən qalmayıb :/");
             }
         }
             
