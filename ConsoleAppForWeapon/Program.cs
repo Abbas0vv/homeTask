@@ -6,16 +6,16 @@
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Console.Write("Enter the initial bullet count: ");
-            int bullets = int.Parse(Console.ReadLine());
-
             Console.Write("Enter the maximum bullet count: ");
             int maxBullets = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter the initial bullet count: ");
+            int bullets = int.Parse(Console.ReadLine());
 
             Console.Write("Should the weapon be automatic? (true/false): ");
             bool isAuto = bool.Parse(Console.ReadLine());
 
-            Weapon myWeapon = new Weapon(bullets, maxBullets, isAuto);
+            Weapon myWeapon = new Weapon(maxBullets, bullets, isAuto);
 
             while (true)
             {
