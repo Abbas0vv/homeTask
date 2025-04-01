@@ -41,13 +41,12 @@ namespace ConsoleAppForWeapon.Models
                     _maxBullets = value;
             }
         }
-
         public bool IsAuto { get; set; }
 
 
         public void Shoot()
         {
-            if (HaveBullet(_bullets))
+            if (DoesHaveBullet(_bullets))
                 MakeGunSound();
             else
                 Console.WriteLine("No bullets left...");
@@ -56,7 +55,7 @@ namespace ConsoleAppForWeapon.Models
         {
             if (IsAuto)
             {
-                while (HaveBullet(_bullets))
+                while (DoesHaveBullet(_bullets))
                 {
                     GunSound();
                     _bullets--;
@@ -70,12 +69,11 @@ namespace ConsoleAppForWeapon.Models
                 _bullets--;
             }
         }
-
         public void GunSound()
         {
             Console.WriteLine("Pew");
         }
-        public bool HaveBullet(int bullets)
+        public bool DoesHaveBullet(int bullets)
         {
             if (bullets > 0)
                 return true;
