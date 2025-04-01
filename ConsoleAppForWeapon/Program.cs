@@ -7,11 +7,12 @@ namespace ConsoleAppForWeapon
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Menu();
 
             static int GetAndValidateUserChoise(int choise)
             {
                 choise = int.Parse(Console.ReadLine());
-                if (choise is int && choise >= 0)
+                if (choise >= 0)
                     return choise;
                 else
                 {
@@ -67,7 +68,6 @@ namespace ConsoleAppForWeapon
 
                         case 3:
                             myWeapon.Reload();
-                            Console.WriteLine("Silah reload edildi!");
                             break;
 
                         case 4:

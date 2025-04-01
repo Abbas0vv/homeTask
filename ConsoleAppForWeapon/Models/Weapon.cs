@@ -28,8 +28,6 @@ namespace ConsoleAppForWeapon.Models
             {
                 if (value <= MaxBullets && value >= 0)
                     _bullets = value;
-                else
-                    _bullets = MaxBullets;
             }
         }
         public int MaxBullets
@@ -39,6 +37,8 @@ namespace ConsoleAppForWeapon.Models
             {
                 if (value > 0)
                     _maxBullets = value;
+                else
+                    _maxBullets = 0;
             }
         }
         public bool IsAuto { get; set; }
@@ -46,7 +46,7 @@ namespace ConsoleAppForWeapon.Models
 
         public void Shoot()
         {
-            if (DoesHaveBullet(_bullets))
+            if (DoesHaveBullet())
                 MakeGunSound();
             else
                 Console.WriteLine("No bullets left...");
@@ -55,7 +55,7 @@ namespace ConsoleAppForWeapon.Models
         {
             if (IsAuto)
             {
-                while (DoesHaveBullet(_bullets))
+                while (DoesHaveBullet())
                 {
                     Console.WriteLine(GunSound());
                     _bullets--;
@@ -64,20 +64,21 @@ namespace ConsoleAppForWeapon.Models
             }
             else
             {
-                Console.WriteLine(GunSound());
-                Console.WriteLine("Single Mode");
-                _bullets--;
+                if (DoesHaveBullet())
+                {
+                    Console.WriteLine(GunSound());
+                    Console.WriteLine("Single Mode");
+                    _bullets--;
+                }
             }
         }
         public string GunSound()
         {
             return "Pew";
         }
-        public bool DoesHaveBullet(int bullets)
+        public bool DoesHaveBullet()
         {
-            if (bullets > 0)
-                return true;
-            else return false;
+            return _bullets > 0;
         }
         public int GetRemainBulletCount()
         {
@@ -85,7 +86,14 @@ namespace ConsoleAppForWeapon.Models
         }
         public void Reload()
         {
-            _bullets = MaxBullets;
+            if (_bullets < MaxBullets)
+            {
+                _bullets = MaxBullets;
+                Console.WriteLine("Reloaded!");
+            }
+            else
+                Console.WriteLine("Already Reloaded!");
+            
         }
         public void ChangeFireMode()
         {
