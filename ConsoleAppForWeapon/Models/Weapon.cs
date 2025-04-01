@@ -57,21 +57,21 @@ namespace ConsoleAppForWeapon.Models
             {
                 while (DoesHaveBullet(_bullets))
                 {
-                    GunSound();
+                    Console.WriteLine(GunSound());
                     _bullets--;
                 }
                 Console.WriteLine("Auto Mode");
             }
             else
             {
-                GunSound();
+                Console.WriteLine(GunSound());
                 Console.WriteLine("Single Mode");
                 _bullets--;
             }
         }
-        public void GunSound()
+        public string GunSound()
         {
-            Console.WriteLine("Pew");
+            return "Pew";
         }
         public bool DoesHaveBullet(int bullets)
         {
@@ -81,20 +81,15 @@ namespace ConsoleAppForWeapon.Models
         }
         public int GetRemainBulletCount()
         {
-            int needForBullets = MaxBullets - _bullets;
-            return needForBullets;
+            return MaxBullets - _bullets;
         }
         public void Reload()
         {
-            if (_bullets < MaxBullets)
-                _bullets = MaxBullets;
+            _bullets = MaxBullets;
         }
         public void ChangeFireMode()
         {
-            if (IsAuto)
-                IsAuto = false;
-            else
-                IsAuto = true;
+            IsAuto = !IsAuto;
         }
     }
 }
