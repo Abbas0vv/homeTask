@@ -6,9 +6,9 @@ namespace ConsoleAppForWeapon
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Menu();
         }
+
         public static void Menu()
         {
             int bullets = 0;
@@ -16,34 +16,34 @@ namespace ConsoleAppForWeapon
             int maxBullets = 0;
 
             Console.Write("Enter the maximum bullet count: ");
-            GetAndValidateMaxBullets(maxBullets);
+            GetAndValidateMaxBullets(ref maxBullets);
 
             Console.Write("Enter the initial bullet count: ");
-            GetAndValidateInitialBulletCount(bullets, maxBullets);
+            GetAndValidateInitialBulletCount(ref bullets, maxBullets);
 
             Console.Write("Should the weapon be automatic? (true/false): ");
-            GetAndValidateBool(isAuto);
+            isAuto = GetAndValidateBool(isAuto);
 
             Weapon myWeapon = new Weapon(maxBullets, bullets, isAuto);
 
             while (true)
             {
                 Console.WriteLine();
-                Console.WriteLine("0 - İnformasiya almaq üçün");
-                Console.WriteLine("1 - Shoot metodu üçün (hazirki moda uygun gulle atacaq)");
-                Console.WriteLine("2 - GetRemainBulletCount metodu üçün");
-                Console.WriteLine("3 - Reload metodu üçün");
-                Console.WriteLine("4 - ChangeFireMode metodu üçün");
-                Console.WriteLine("5 - Proqramdan dayandırmaq üçün");
+                Console.WriteLine("0 - To get information");
+                Console.WriteLine("1 - For Shoot method (will shoot a bullet according to the current mode)");
+                Console.WriteLine("2 - For GetRemainBulletCount method");
+                Console.WriteLine("3 - For Reload method");
+                Console.WriteLine("4 - For ChangeFireMode method");
+                Console.WriteLine("5 - To stop the program");
                 Console.WriteLine();
 
-                int userChoise = 0;
-                userChoise = GetAndValidateUserChoise(userChoise);
+                int userChoice = 0;
+                userChoice = GetAndValidateUserChoice(ref userChoice);
 
-                switch (userChoise)
+                switch (userChoice)
                 {
                     case 0:
-                        Console.WriteLine($"Sizin silahınızın güllə sayı: {myWeapon.Bullets}. Maximum güllə sayı : {myWeapon.MaxBullets}. Silahınız {(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış modundadır");
+                        Console.WriteLine($"Your weapon's current bullet count: {myWeapon.Bullets}. Maximum bullet count: {myWeapon.MaxBullets}. Your weapon is in {(myWeapon.IsAuto ? "Automatic" : "Single-shot")} firing mode.");
                         break;
 
                     case 1:
@@ -51,7 +51,7 @@ namespace ConsoleAppForWeapon
                         break;
 
                     case 2:
-                        Console.WriteLine($"Doldurmaq üçün lazım olan güllə sayı: {myWeapon.GetRemainBulletCount()}");
+                        Console.WriteLine($"Remaining bullets needed to reload: {myWeapon.GetRemainBulletCount()}");
                         break;
 
                     case 3:
@@ -60,56 +60,55 @@ namespace ConsoleAppForWeapon
 
                     case 4:
                         myWeapon.ChangeFireMode();
-                        Console.WriteLine($"{(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış moduna keçdi.");
+                        Console.WriteLine($"{(myWeapon.IsAuto ? "Automatic" : "Single-shot")} firing mode is now active.");
                         break;
 
                     case 5:
-                        Console.WriteLine("Proqram dayandırıldı.");
+                        Console.WriteLine("Program stopped.");
                         return;
 
                     default:
-                        Console.WriteLine("Yanlış seçim, yenidən daxil et.");
+                        Console.WriteLine("Invalid choice, please try again.");
                         break;
                 }
             }
         }
-
-        public static int GetAndValidateMaxBullets(int maxBullets)
+        public static int GetAndValidateMaxBullets(ref int maxBullets)
         {
             bool checkBox;
             while (!int.TryParse(Console.ReadLine(), out maxBullets))
             {
-                Console.WriteLine("Invalid input. Please enter int:");
+                Console.WriteLine("Invalid input. Please enter an integer:");
             }
             return maxBullets;
         }
-        public static int GetAndValidateUserChoise(int choise)
+        public static int GetAndValidateUserChoice(ref int choice)
         {
             bool checkBox = false;
 
             while (!checkBox)
             {
-                checkBox = int.TryParse(Console.ReadLine(), out choise);
+                checkBox = int.TryParse(Console.ReadLine(), out choice);
             }
 
-            if (choise >= 0)
-                return choise;
+            if (choice >= 0)
+                return choice;
             else
             {
-                Console.WriteLine("Wrong imput");
+                Console.WriteLine("Invalid input");
                 return 0;
             }
         }
-        public static int GetAndValidateInitialBulletCount(int bullets, int maxBullets)
+        public static int GetAndValidateInitialBulletCount(ref int bullets, int maxBullets)
         {
             bool checkBox;
             while (!int.TryParse(Console.ReadLine(), out bullets))
             {
-                Console.WriteLine("Invalid input. Please enter int:");
+                Console.WriteLine("Invalid input. Please enter an integer:");
             }
             if (bullets > maxBullets)
             {
-                Console.WriteLine("Your initial bullet(s) count cannot be more than maxBullets");
+                Console.WriteLine("Your initial bullet count cannot exceed the maximum bullet count.");
                 return 0;
             }
             return bullets;
@@ -122,6 +121,5 @@ namespace ConsoleAppForWeapon
             }
             return box;
         }
-
     }
 }
