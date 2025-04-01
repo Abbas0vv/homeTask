@@ -34,7 +34,7 @@
                 switch (userChoise)
                 {
                     case 0:
-                        Console.WriteLine($"Sizin silahınızın güllə sayı: {myWeapon._bullets}. Maximum güllə sayı : {myWeapon._maxBullets}. Silahınız {(myWeapon._isAuto ? "Avtomatik" : "Tək-tək")} atış modundadır");
+                        Console.WriteLine($"Sizin silahınızın güllə sayı: {myWeapon.Bullets}. Maximum güllə sayı : {myWeapon.MaxBullets}. Silahınız {(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış modundadır");
                         break;
 
                     case 1:
@@ -52,7 +52,7 @@
 
                     case 4:
                         myWeapon.ChangeFireMode();
-                        Console.WriteLine($"{(myWeapon._isAuto ? "Avtomatik" : "Tək-tək")} atış moduna keçdi.");
+                        Console.WriteLine($"{(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış moduna keçdi.");
                         break;
 
                     case 5:

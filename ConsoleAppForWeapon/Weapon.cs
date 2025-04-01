@@ -8,46 +8,48 @@ namespace ConsoleAppForWeapon
 {
     class Weapon
     {
+        int _bullets;
         public Weapon(int maxBullets, int bullets, bool isAuto)
         {
-            _maxBullets = maxBullets;
-            _bullets = bullets;
-            _isAuto = isAuto;
+            MaxBullets = maxBullets;
+            Bullets = bullets;
+            IsAuto = isAuto;
         }
-        public int _bullets 
-        { 
-            get 
+
+        public int Bullets
+        {
+            get
             {
                 return _bullets;
             }
-            set 
+            set
             {
-                if (value < _maxBullets)
+                if (value < MaxBullets)
                     _bullets = value;
-                else 
-                    _bullets = 0;
+                else
+                    _bullets = MaxBullets;
             }
         }
-        public int _maxBullets { get; set; }
-        public bool _isAuto { get; set; }
+        public int MaxBullets { get; set; }
+        public bool IsAuto { get; set; }
 
 
         public void Shoot()
         {
             if (HaveBullet(_bullets))
             {
-                if (_isAuto)
+                if (IsAuto)
                 {
                     while (HaveBullet(_bullets))
                     {
-                        GunSound();
+                        MakeGunSound();
                         _bullets--;
                     }
                     Console.WriteLine("Auto Mode");
                 }
                 else
                 {
-                    GunSound();
+                    MakeGunSound();
                     Console.WriteLine("Single Mode");
                     _bullets--;
                 }
@@ -55,9 +57,9 @@ namespace ConsoleAppForWeapon
             else
                 Console.WriteLine("No bullets left...");
         }
-        public string GunSound()
+        public void MakeGunSound()
         {
-            return "Pew";
+            Console.WriteLine("Pew");
         }
         public bool HaveBullet(int bullets)
         {
@@ -67,20 +69,20 @@ namespace ConsoleAppForWeapon
         }
         public int GetRemainBulletCount()
         {
-            int needForBullets = _maxBullets - _bullets;
+            int needForBullets = MaxBullets - _bullets;
             return needForBullets;
         }
         public void Reload()
         {
-            if (_bullets < _maxBullets)
-                _bullets = _maxBullets;
+            if (_bullets < MaxBullets)
+                _bullets = MaxBullets;
         }
         public void ChangeFireMode()
         {
-            if (_isAuto)
-                _isAuto = false;
+            if (IsAuto)
+                IsAuto = false;
             else
-                _isAuto = true;
+                IsAuto = true;
         }
     }
 }
