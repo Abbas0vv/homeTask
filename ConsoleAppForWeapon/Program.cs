@@ -24,13 +24,10 @@ namespace ConsoleAppForWeapon
             Console.Write("Should the weapon be automatic? (true/false): ");
             GetAndValidateBool(isAuto);
 
-
             Weapon myWeapon = new Weapon(maxBullets, bullets, isAuto);
-
 
             while (true)
             {
-
                 Console.WriteLine();
                 Console.WriteLine("0 - İnformasiya almaq üçün");
                 Console.WriteLine("1 - Shoot metodu üçün (hazirki moda uygun gulle atacaq)");
@@ -42,7 +39,6 @@ namespace ConsoleAppForWeapon
 
                 int userChoise = 0;
                 userChoise = GetAndValidateUserChoise(userChoise);
-
 
                 switch (userChoise)
                 {
@@ -104,7 +100,6 @@ namespace ConsoleAppForWeapon
                 return 0;
             }
         }
-
         public static int GetAndValidateInitialBulletCount(int bullets, int maxBullets)
         {
             bool checkBox;
@@ -119,7 +114,6 @@ namespace ConsoleAppForWeapon
             }
             return bullets;
         }
-
         public static bool GetAndValidateBool(bool box)
         {
             while (!bool.TryParse(Console.ReadLine(), out box))
