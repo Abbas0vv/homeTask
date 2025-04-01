@@ -9,18 +9,6 @@ namespace ConsoleAppForWeapon
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Menu();
 
-            static int GetAndValidateUserChoise(int choise)
-            {
-                choise = int.Parse(Console.ReadLine());
-                if (choise >= 0)
-                    return choise;
-                else
-                {
-                    Console.WriteLine("Wrong imput");
-                    return 0;
-                }
-            }
-
             static void Menu()
             {
 
@@ -49,7 +37,7 @@ namespace ConsoleAppForWeapon
                     Console.WriteLine();
 
                     int userChoise = 0;
-                    userChoise = GetAndValidateUserChoise(userChoise);
+                    userChoise = GetAndValidateUserChoise();
                     
 
                     switch (userChoise)
@@ -85,7 +73,17 @@ namespace ConsoleAppForWeapon
                     }
                 }
             }
-
+            static int GetAndValidateUserChoise()
+            {
+                int choise = int.Parse(Console.ReadLine());
+                if (choise >= 0)
+                    return choise;
+                else
+                {
+                    Console.WriteLine("Wrong imput");
+                    return 0;
+                }
+            }
         }
     }
 }

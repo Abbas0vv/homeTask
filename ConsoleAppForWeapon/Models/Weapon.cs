@@ -20,16 +20,16 @@ namespace ConsoleAppForWeapon.Models
 
         public int Bullets
         {
-            get
-            {
-                return _bullets;
-            }
+            get { return _bullets; }
             set
             {
                 if (value <= MaxBullets && value >= 0)
                     _bullets = value;
+                else
+                    Console.WriteLine($"Invalid bullet count: {value}. It must be between 0 and {MaxBullets}.");
             }
         }
+
         public int MaxBullets
         {
             get { return _maxBullets; }
@@ -38,7 +38,10 @@ namespace ConsoleAppForWeapon.Models
                 if (value > 0)
                     _maxBullets = value;
                 else
-                    _maxBullets = 0;
+                {
+                    Console.WriteLine("Max bullets cannot be less than 1. Setting to 10.");
+                    _maxBullets = 10;
+                }
             }
         }
         public bool IsAuto { get; set; }
@@ -57,8 +60,8 @@ namespace ConsoleAppForWeapon.Models
             {
                 while (DoesHaveBullet())
                 {
-                    Console.WriteLine(GunSound());
                     _bullets--;
+                    Console.WriteLine(GunSound());
                 }
                 Console.WriteLine("Auto Mode");
             }
@@ -66,9 +69,9 @@ namespace ConsoleAppForWeapon.Models
             {
                 if (DoesHaveBullet())
                 {
+                    _bullets--;
                     Console.WriteLine(GunSound());
                     Console.WriteLine("Single Mode");
-                    _bullets--;
                 }
             }
         }
