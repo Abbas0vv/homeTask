@@ -29,12 +29,12 @@ namespace ConsoleAppForWeapon
             while (true)
             {
                 Console.WriteLine();
-                Console.WriteLine("0 - To get information");
-                Console.WriteLine("1 - For Shoot method (will shoot a bullet according to the current mode)");
-                Console.WriteLine("2 - For GetRemainBulletCount method");
-                Console.WriteLine("3 - For Reload method");
-                Console.WriteLine("4 - For ChangeFireMode method");
-                Console.WriteLine("5 - To stop the program");
+                Console.WriteLine("1 - To get information");
+                Console.WriteLine("2 - For Shoot method (will shoot a bullet according to the current mode)");
+                Console.WriteLine("3 - For GetRemainBulletCount method");
+                Console.WriteLine("4 - For Reload method");
+                Console.WriteLine("5 - For ChangeFireMode method");
+                Console.WriteLine("0 - To stop the program");
                 Console.WriteLine();
 
                 int userChoice = 0;
@@ -42,28 +42,28 @@ namespace ConsoleAppForWeapon
 
                 switch (userChoice)
                 {
-                    case 0:
+                    case 1:
                         Console.WriteLine($"Your weapon's current bullet count: {myWeapon.Bullets}. Maximum bullet count: {myWeapon.MaxBullets}. Your weapon is in {(myWeapon.IsAuto ? "Automatic" : "Single-shot")} firing mode.");
                         break;
 
-                    case 1:
+                    case 2:
                         myWeapon.Shoot();
                         break;
 
-                    case 2:
+                    case 3:
                         Console.WriteLine($"Remaining bullets needed to reload: {myWeapon.GetRemainBulletCount()}");
                         break;
 
-                    case 3:
+                    case 4:
                         myWeapon.Reload();
                         break;
 
-                    case 4:
+                    case 5:
                         myWeapon.ChangeFireMode();
                         Console.WriteLine($"{(myWeapon.IsAuto ? "Automatic" : "Single-shot")} firing mode is now active.");
                         break;
 
-                    case 5:
+                    case 0:
                         Console.WriteLine("Program stopped.");
                         return;
 
