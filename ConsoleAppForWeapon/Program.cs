@@ -22,7 +22,7 @@ namespace ConsoleAppForWeapon
             GetAndValidateInitialBulletCount(ref bullets, maxBullets);
 
             Console.Write("Should the weapon be automatic? (true/false): ");
-            isAuto = GetAndValidateBool(isAuto);
+            GetAndValidateBool(isAuto);
 
             Weapon myWeapon = new Weapon(maxBullets, bullets, isAuto);
 
