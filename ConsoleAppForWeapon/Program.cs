@@ -8,6 +8,18 @@ namespace ConsoleAppForWeapon
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            static int GetAndValidateUserChoise(int choise)
+            {
+                choise = int.Parse(Console.ReadLine());
+                if (choise is int && choise >= 0)
+                    return choise;
+                else
+                {
+                    Console.WriteLine("Wrong imput");
+                    return 0;
+                }
+            }
+
             static void Menu()
             {
 
@@ -35,7 +47,9 @@ namespace ConsoleAppForWeapon
                     Console.WriteLine("5 - Proqramdan dayandırmaq üçün");
                     Console.WriteLine();
 
-                    int userChoise = int.Parse(Console.ReadLine());
+                    int userChoise = 0;
+                    userChoise = GetAndValidateUserChoise(userChoise);
+                    
 
                     switch (userChoise)
                     {
@@ -71,6 +85,7 @@ namespace ConsoleAppForWeapon
                     }
                 }
             }
+
         }
     }
 }
