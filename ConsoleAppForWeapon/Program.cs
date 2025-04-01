@@ -8,62 +8,67 @@ namespace ConsoleAppForWeapon
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            Console.Write("Enter the maximum bullet count: ");
-            int maxBullets = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter the initial bullet count: ");
-            int bullets = int.Parse(Console.ReadLine());
-
-            Console.Write("Should the weapon be automatic? (true/false): ");
-            bool isAuto = bool.Parse(Console.ReadLine());
-
-            Weapon myWeapon = new Weapon(maxBullets, bullets, isAuto);
-
-            while (true)
+            static void Menu()
             {
 
-                Console.WriteLine();
-                Console.WriteLine("0 - İnformasiya almaq üçün");
-                Console.WriteLine("1 - Shoot metodu üçün (hazirki moda uygun gulle atacaq)");
-                Console.WriteLine("2 - GetRemainBulletCount metodu üçün");
-                Console.WriteLine("3 - Reload metodu üçün");
-                Console.WriteLine("4 - ChangeFireMode metodu üçün");
-                Console.WriteLine("5 - Proqramdan dayandırmaq üçün");
-                Console.WriteLine();
+                Console.Write("Enter the maximum bullet count: ");
+                int maxBullets = int.Parse(Console.ReadLine());
 
-                int userChoise = int.Parse(Console.ReadLine());
+                Console.Write("Enter the initial bullet count: ");
+                int bullets = int.Parse(Console.ReadLine());
 
-                switch (userChoise)
+                Console.Write("Should the weapon be automatic? (true/false): ");
+                bool isAuto = bool.Parse(Console.ReadLine());
+
+                Weapon myWeapon = new Weapon(maxBullets, bullets, isAuto);
+
+
+                while (true)
                 {
-                    case 0:
-                        Console.WriteLine($"Sizin silahınızın güllə sayı: {myWeapon.Bullets}. Maximum güllə sayı : {myWeapon.MaxBullets}. Silahınız {(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış modundadır");
-                        break;
 
-                    case 1:
-                        myWeapon.Shoot();
-                        break;
+                    Console.WriteLine();
+                    Console.WriteLine("0 - İnformasiya almaq üçün");
+                    Console.WriteLine("1 - Shoot metodu üçün (hazirki moda uygun gulle atacaq)");
+                    Console.WriteLine("2 - GetRemainBulletCount metodu üçün");
+                    Console.WriteLine("3 - Reload metodu üçün");
+                    Console.WriteLine("4 - ChangeFireMode metodu üçün");
+                    Console.WriteLine("5 - Proqramdan dayandırmaq üçün");
+                    Console.WriteLine();
 
-                    case 2:
-                        Console.WriteLine($"Doldurmaq üçün lazım olan güllə sayı: {myWeapon.GetRemainBulletCount()}");
-                        break;
+                    int userChoise = int.Parse(Console.ReadLine());
 
-                    case 3:
-                        myWeapon.Reload();
-                        Console.WriteLine("Silah reload edildi!");
-                        break;
+                    switch (userChoise)
+                    {
+                        case 0:
+                            Console.WriteLine($"Sizin silahınızın güllə sayı: {myWeapon.Bullets}. Maximum güllə sayı : {myWeapon.MaxBullets}. Silahınız {(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış modundadır");
+                            break;
 
-                    case 4:
-                        myWeapon.ChangeFireMode();
-                        Console.WriteLine($"{(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış moduna keçdi.");
-                        break;
+                        case 1:
+                            myWeapon.Shoot();
+                            break;
 
-                    case 5:
-                        Console.WriteLine("Proqram dayandırıldı.");
-                        return;
+                        case 2:
+                            Console.WriteLine($"Doldurmaq üçün lazım olan güllə sayı: {myWeapon.GetRemainBulletCount()}");
+                            break;
 
-                    default:
-                        Console.WriteLine("Yanlış seçim, yenidən daxil et.");
-                        break;
+                        case 3:
+                            myWeapon.Reload();
+                            Console.WriteLine("Silah reload edildi!");
+                            break;
+
+                        case 4:
+                            myWeapon.ChangeFireMode();
+                            Console.WriteLine($"{(myWeapon.IsAuto ? "Avtomatik" : "Tək-tək")} atış moduna keçdi.");
+                            break;
+
+                        case 5:
+                            Console.WriteLine("Proqram dayandırıldı.");
+                            return;
+
+                        default:
+                            Console.WriteLine("Yanlış seçim, yenidən daxil et.");
+                            break;
+                    }
                 }
             }
         }
