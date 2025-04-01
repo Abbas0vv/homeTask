@@ -9,6 +9,8 @@ namespace ConsoleAppForWeapon.Models
     class Weapon
     {
         int _bullets;
+        int _maxBullets;
+
         public Weapon(int maxBullets, int bullets, bool isAuto)
         {
             MaxBullets = maxBullets;
@@ -30,7 +32,16 @@ namespace ConsoleAppForWeapon.Models
                     _bullets = MaxBullets;
             }
         }
-        public int MaxBullets { get; set; }
+        public int MaxBullets
+        {
+            get { return _maxBullets; }
+            set
+            {
+                if (value > 0)
+                    _maxBullets = value;
+            }
+        }
+
         public bool IsAuto { get; set; }
 
 
