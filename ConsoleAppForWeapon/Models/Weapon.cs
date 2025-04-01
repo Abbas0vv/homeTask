@@ -26,7 +26,7 @@ namespace ConsoleAppForWeapon.Models
             }
             set
             {
-                if (value < MaxBullets)
+                if (value <= MaxBullets && value >= 0)
                     _bullets = value;
                 else
                     _bullets = MaxBullets;
