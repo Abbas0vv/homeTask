@@ -1,4 +1,6 @@
-﻿namespace ConsoleAppForWeapon
+﻿using ConsoleAppForWeapon.Models;
+
+namespace ConsoleAppForWeapon
 {
     internal class Program
     {
