@@ -75,7 +75,6 @@ namespace ConsoleAppForWeapon
         }
         public static int GetAndValidateMaxBullets(ref int maxBullets)
         {
-            bool checkBox;
             while (!int.TryParse(Console.ReadLine(), out maxBullets))
             {
                 Console.WriteLine("Invalid input. Please enter an integer:");
@@ -84,11 +83,10 @@ namespace ConsoleAppForWeapon
         }
         public static int GetAndValidateUserChoice(ref int choice)
         {
-            bool checkBox = false;
 
-            while (!checkBox)
+            while (!int.TryParse(Console.ReadLine(), out choice))
             {
-                checkBox = int.TryParse(Console.ReadLine(), out choice);
+                Console.WriteLine("Invalid input. Please enter correct choise:");
             }
 
             if (choice >= 0)
@@ -101,7 +99,6 @@ namespace ConsoleAppForWeapon
         }
         public static int GetAndValidateInitialBulletCount(ref int bullets, int maxBullets)
         {
-            bool checkBox;
             while (!int.TryParse(Console.ReadLine(), out bullets))
             {
                 Console.WriteLine("Invalid input. Please enter an integer:");
