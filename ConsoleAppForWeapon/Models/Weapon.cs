@@ -48,27 +48,30 @@ namespace ConsoleAppForWeapon.Models
         public void Shoot()
         {
             if (HaveBullet(_bullets))
-            {
-                if (IsAuto)
-                {
-                    while (HaveBullet(_bullets))
-                    {
-                        MakeGunSound();
-                        _bullets--;
-                    }
-                    Console.WriteLine("Auto Mode");
-                }
-                else
-                {
-                    MakeGunSound();
-                    Console.WriteLine("Single Mode");
-                    _bullets--;
-                }
-            }
+                MakeGunSound();
             else
                 Console.WriteLine("No bullets left...");
         }
         public void MakeGunSound()
+        {
+            if (IsAuto)
+            {
+                while (HaveBullet(_bullets))
+                {
+                    GunSound();
+                    _bullets--;
+                }
+                Console.WriteLine("Auto Mode");
+            }
+            else
+            {
+                GunSound();
+                Console.WriteLine("Single Mode");
+                _bullets--;
+            }
+        }
+
+        public void GunSound()
         {
             Console.WriteLine("Pew");
         }
